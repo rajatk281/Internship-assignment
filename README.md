@@ -1,36 +1,307 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Manager Application
 
-## Getting Started
+A full-stack Task Management application built with Next.js, PostgreSQL, Drizzle ORM, and JWT Authentication.
 
-First, run the development server:
+## Features
+
+### Authentication
+- User Registration
+- User Login
+- JWT-based Authentication
+- Protected Routes
+- Secure Password Hashing
+
+### Task Management
+- Create Tasks
+- View Tasks
+- Update Tasks
+- Delete Tasks
+- User-specific Tasks
+
+### Technical Features
+- RESTful API Design
+- PostgreSQL Database
+- Drizzle ORM
+- Docker Support
+- Responsive UI
+- TypeScript Support
+
+---
+
+## Tech Stack
+
+### Frontend
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS
+
+### Backend
+- Next.js API Routes
+- JWT Authentication
+- bcrypt
+
+### Database
+- PostgreSQL
+- Neon Database
+- Drizzle ORM
+
+### DevOps
+- Docker
+
+---
+
+## Project Structure
+
+```bash
+task-manager/
+│
+├── app/
+│   ├── api/
+│   │   ├── auth/
+│   │   └── tasks/
+│   │
+│   ├── login/
+│   ├── register/
+│   └── dashboard/
+│
+├── db/
+│   ├── schema.ts
+│   └── index.ts
+│
+├── drizzle/
+│
+├── public/
+│
+├── Dockerfile
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+## API Endpoints
+
+### Authentication
+
+#### Register User
+
+```http
+POST /api/auth/register
+```
+
+Request Body
+
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
+
+Response
+
+```json
+{
+  "message": "User registered successfully"
+}
+```
+
+---
+
+#### Login User
+
+```http
+POST /api/auth/login
+```
+
+Request Body
+
+```json
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+```
+
+Response
+
+```json
+{
+  "token": "jwt_token"
+}
+```
+
+---
+
+### Tasks
+
+#### Get All Tasks
+
+```http
+GET /api/tasks
+```
+
+#### Create Task
+
+```http
+POST /api/tasks
+```
+
+Request Body
+
+```json
+{
+  "title": "Complete Assignment",
+  "description": "Finish internship task"
+}
+```
+
+#### Update Task
+
+```http
+PUT /api/tasks/:id
+```
+
+#### Delete Task
+
+```http
+DELETE /api/tasks/:id
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root directory.
+
+```env
+DATABASE_URL=your_database_url
+
+JWT_SECRET=your_secret_key
+
+NODE_ENV=development
+```
+
+---
+
+## Local Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/task-manager.git
+```
+
+Navigate to project
+
+```bash
+cd task-manager
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Application runs at
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Database Setup
 
-To learn more about Next.js, take a look at the following resources:
+Generate migration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx drizzle-kit generate
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run migration
 
-## Deploy on Vercel
+```bash
+npx drizzle-kit migrate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Docker Setup
+
+Build Docker Image
+
+```bash
+docker build -t task-manager .
+```
+
+Run Docker Container
+
+```bash
+docker run -p 3000:3000 --env-file .env task-manager
+```
+
+Verify Running Containers
+
+```bash
+docker ps
+```
+
+---
+
+## Security
+
+- Passwords are hashed using bcrypt
+- JWT Authentication implemented
+- Protected API Routes
+- Environment Variables for secrets
+- User-specific data access
+
+---
+
+## Future Improvements
+
+- Task Status Tracking
+- Task Categories
+- Due Dates
+- Email Notifications
+- Refresh Tokens
+- Role-Based Access Control
+- Pagination
+- Search and Filtering
+
+---
+
+## Assignment Requirements Covered
+
+- User Authentication
+- CRUD Operations
+- PostgreSQL Integration
+- REST API Development
+- Frontend UI
+- Secure Backend Design
+- Dockerization
+- TypeScript Usage
+
+---
+
+## Author
+
+Rajat Kumar
+
+B.Tech Computer Science Engineering
+
+Full Stack Developer
+
+GitHub: https://github.com/yourusername
+LinkedIn: https://linkedin.com/in/yourprofile
